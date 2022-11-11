@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GoogleApiService } from './google-api.service';
+import { GoogleApiService, UserInfo } from './google-api.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +7,39 @@ import { GoogleApiService } from './google-api.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Google_login';
+  title = 'google-login-test';
 
-  constructor(private readonly google: GoogleApiService){
-     
+mailSnippets:string[] = []
+  userInfo?: UserInfo
+
+  constructor(private readonly googleApi: GoogleApiService) {
+    googleApi.userProfileSubject.subscribe(info => {
+      this.userInfo = info
+    })
   }
+isLoggedIn():boolean{
+  return this.googleApi.isLoggedIn()
+}
+
+logout(){
+  this.googleApi.singOut()
+}
+
+async getEmails(){
+  if (!this.userInfo){
+    return;
+  }
+
+// const userId = this.userInfo?.info.sub as string
+// const messages = await lastValueFrom(this.googleApi.emails(userId))
+//     messages.messages.forEach( (element: any) => {
+//       const mail = lastValueFrom(this.googleApi.getMail(userId, element.id))
+//       mail.then( mail => {
+//         this.mailSnippets.push(mail.snippet)
+//       })
+//     });
+
+}
+
+
 }
