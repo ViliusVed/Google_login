@@ -26,7 +26,8 @@ export class GoogleApiService {
 
   constructor(private readonly oAuthService: OAuthService) {
     oAuthService.configure(oAuthConfig)
-    oAuthService.logoutUrl='https://www.google.com/accounts/logout'
+    // logout from all google accounts on chrome
+    // oAuthService.logoutUrl='https://www.google.com/accounts/logout'
     oAuthService.loadDiscoveryDocument().then(() => {
       oAuthService.tryLoginImplicitFlow().then(() => {
         if (!oAuthService.hasValidAccessToken()) {
