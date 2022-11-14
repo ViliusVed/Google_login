@@ -6,7 +6,7 @@ const oAuthConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
   strictDiscoveryDocumentValidation: false,
   redirectUri: window.location.origin,
-  clientId: '472678585369-dijvbougs8oboqjcsv9tsv52di51rs93.apps.googleusercontent.com',
+  clientId: 'id',
   scope: 'openid profile email'
 }
 
